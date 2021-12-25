@@ -1,0 +1,16 @@
+# Base on offical NGINX image
+FROM nginx
+
+# Remove any existing config files
+RUN rm /etc/nginx/nginx.conf
+
+
+# .conf files in conf.d/ dir get included in main config
+COPY /home/ubuntu/Salt-Front/nginx.config /etc/nginx/nginx.conf
+
+
+# Expose the listening port
+EXPOSE 80
+
+# Launch NGINX
+CMD [ "nginx", "-g", "daemon off;" ]
